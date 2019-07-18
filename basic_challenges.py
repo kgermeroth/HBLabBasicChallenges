@@ -1,60 +1,86 @@
-# Find the range
-# def find_range(nums):
-#     num_min = None
-#     num_max = None
+# First day coding challenges
 
-#     if nums == []:
-#         pass
-#     elif len(nums) == 1:
-#         num_min = nums[0]
-#         num_max = nums[0]
-#     else:
-#         num_min = min(nums)
-#         num_max = max(nums)
+def find_range(nums):
+	""" Takes a list of numbers, returns the smallest and largest number """
 
-#     return (num_min, num_max)
+	num_min = None
+	num_max = None
 
-# print(find_range([5]))
+	if nums == []:
+		pass
 
-# #FizzBuzz
-# def fizzbuzz():
-#     for num in range(1,21):
-#         if num%3 == 0 and num%5 == 0:
-#             print("fizzbuzz")
-#         elif num%3 == 0:
-#             print("fizz")
-#         elif num%5 == 0:
-#             print("buzz")
+	elif len(nums) == 1:
+		num_min = nums[0]
+		num_max = nums[0]
 
-#         else:
-#             print(num)
+	else:
+		num_min = min(nums)
+		num_max = max(nums)
 
-# # fizzbuzz()
+	return (num_min, num_max)
 
-# def find_longest_word(words):
-#     longest_word_length = 0
-#     for word in words:
-#         if len(word) > longest_word_length:
-#             longest_word_length = len(word)
-#     return longest_word_length
 
-# print(find_longest_word(["Balloonicorn", "Hackbright","Supercalifragilid"]))
+def fizzbuzz():
+	""" Counts from 1 to 20 in fizzbuzz fashion.
 
-#decorder
-# A valid code is a sequence of numbers and letters, always starting with a number and ending with letter(s).
+	Loops through 1 - 20. If number is divisible by 3, say 'fizz'.
+	If number divisible by 5, say 'buzz'. Divisible by both, say 'fizzbuzz'.
+	Otherwise say the number. """
 
-# Each number tells you how many characters to skip before finding a good letter. After each good letter should come the next next number.
+	for num in range(1,21):
+		if num%3 == 0 and num%5 == 0:
+			print("fizzzbuzz")
 
-# For example, the string “hey” could be encoded by “0h1ae2bcy”. This means “skip 0, find the ‘h’, skip 1, find the ‘e’, skip 2, find the ‘y’”.
+		elif num%3 == 0:
+			print("fizz")
+	
+		elif num%5 == 0:
+			print("buzz")
+
+		else:
+			print(num)
+
+
+def find_longest_word(words):
+	""" Returns the length of the longest word in a list of words"""
+
+	longest_word_length = 0
+
+	for word in words:
+		if len(word) > longest_word_length:
+			longest_word_length = len(word)
+
+	return longest_word_length
+
 
 def decode(s):
-    secret_word = ""
+	""" Decodes a string to reveal secret message.
 
-    for idx, char in enumerate(s):
-        if char.isdigit():
-            secret_idx = idx + 1 + int(char)
-            secret_word += s[secret_idx]
+	Each number tells you how many characters to skip before finding a good letter. After each good letter should come the next next number.
 
-    return secret_word
+	For example:
 
-print(decode("0h1ae2bcy"))
+	>>> decode('0h1ae2bcy')
+	'hey'
+
+	"""
+
+
+	secret_word = ""
+
+	for idx, char in enumerate(s):
+		if char.isdigit():
+			secret_idx = idx + 1 + int(char)
+			secret_word += s[secret_idx]
+
+	return secret_word
+
+
+# run doc tests
+if __name__ == "__main__":
+	import doctest
+
+	result = doctest.testmod()
+
+	if result.failed == 0:
+		print("All tests passed! :)")
